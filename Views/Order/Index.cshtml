@@ -1,30 +1,37 @@
-﻿@model IEnumerable<RusterShop.EF.Order>
+﻿@model List<RusterShop.EF.Order>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Orders</h2>
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@if (Model.Count == 0)
+{
+    <center>No orders</center>
+}
+else
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
-            </td>
+            <th>ID</th>
+            <th>Date</th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
