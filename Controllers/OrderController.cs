@@ -26,6 +26,7 @@ namespace RusterShop.Controllers
             foreach (ProductsOrder po in productsOrders)
             {
                 Product product = _db.Products.Find(po.ProductID);
+                product.quantity = po.quantity;
                 products.Add(product);
             }
             ViewBag.Order = order;
@@ -50,12 +51,14 @@ namespace RusterShop.Controllers
 
             foreach (Product p in cart)
             {
-                ProductsOrder po = new ProductsOrder
-                {
+               //add to ProductsOrders
+               ProductsOrder productsOrder = new ProductsOrder
+               {
                     OrderID = order.OrderID,
                     ProductID = p.ProductID,
+                    quantity = p.quantity
                 };
-                _db.ProductsOrders.Add(po);
+                _db.ProductsOrders.Add(productsOrder);
                 _db.SaveChanges();
             }
             Session.Clear();

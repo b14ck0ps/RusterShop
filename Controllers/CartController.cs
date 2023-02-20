@@ -22,26 +22,46 @@ namespace RusterShop.Controllers
 
         public ActionResult AddToCart(int id)
         {
+            decimal? total = 0;
             List<Product> cart = new List<Product>();
             if (Session["Cart"] != null)
             {
                 cart = (List<Product>)Session["Cart"];
             }
-            using (RusterEntities db = new RusterEntities())
+            if (Session["total"] != null)
             {
-                cart.Add(db.Products.Find(id));
+                total = (decimal)Session["total"];
             }
-            Session["Cart"] = cart;
-            int count = 0;
-            decimal? total = 0;
-            foreach (Product p in cart)
+            
+            //check if item already exist in cart session
+            if (cart.Any(x => x.ProductID == id))
             {
-                count++;
-                total += p.Price;
+                //if exist then increase quantity and update total
+                foreach (var item in cart)
+                {
+                    if (item.ProductID == id)
+                    {
+                        item.quantity++;
+                        total += item.Price;
+                    }
+                }
             }
-            Session["CartCount"] = count;
-            Session["total"] = total;
+            else
+            {
+               //add a new item to cart session and update total
+                using (RusterEntities db = new RusterEntities())
+                {
+                    Product product = db.Products.Find(id);
+                    product.quantity = 1;
+                    cart.Add(product);
+                    total += product.Price * product.quantity;
+                }
+              
+            }
 
+            Session["Cart"] = cart;
+            Session["CartCount"] = cart.Count;
+            Session["total"] = total;
             return RedirectToAction("Index", "Home");
         }
     }

@@ -17,6 +17,7 @@ namespace RusterShop.EF
         public int ProductsOrdersID { get; set; }
         public Nullable<int> ProductID { get; set; }
         public Nullable<int> OrderID { get; set; }
+        public Nullable<int> quantity { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

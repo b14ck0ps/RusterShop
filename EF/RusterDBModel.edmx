@@ -39,6 +39,7 @@
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="CategoryID" Type="int" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="quantity" Type="int" />
         </EntityType>
         <EntityType Name="ProductsOrders">
           <Key>
@@ -47,6 +48,7 @@
           <Property Name="ProductsOrdersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
           <Property Name="OrderID" Type="int" />
+          <Property Name="quantity" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -158,6 +160,7 @@
           <NavigationProperty Name="Category" Relationship="Self.FK_Products_Category" FromRole="Products" ToRole="Category" />
           <NavigationProperty Name="ProductsOrders" Relationship="Self.FK_ProductsOrders_Products" FromRole="Products" ToRole="ProductsOrders" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="quantity" Type="Int32" />
         </EntityType>
         <EntityType Name="ProductsOrder">
           <Key>
@@ -168,6 +171,7 @@
           <Property Name="OrderID" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="Self.FK_ProductsOrders_Orders" FromRole="ProductsOrders" ToRole="Orders" />
           <NavigationProperty Name="Product" Relationship="Self.FK_ProductsOrders_Products" FromRole="ProductsOrders" ToRole="Products" />
+          <Property Name="quantity" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -289,6 +293,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="RusterModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
@@ -299,6 +304,7 @@
           <EntitySetMapping Name="ProductsOrders">
             <EntityTypeMapping TypeName="RusterModel.ProductsOrder">
               <MappingFragment StoreEntitySet="ProductsOrders">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="ProductsOrdersID" ColumnName="ProductsOrdersID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />

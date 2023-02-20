@@ -9,19 +9,22 @@
 <br />
 <label>Order date : </label> @ViewBag.order.OrderDate
 <br />
-<label>Total Price: </label> @ViewBag.order.TotalPrice
-<br />
+
 
 <table class="table">
     <tr>
         <th>Product</th>
-        <th>Price</th>
+        <th>Quantity</th>
+        <th>Price (per)</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.ProductName</td>
+            <td>@item.quantity</td>
             <td>@item.Price</td>
         </tr>
     }
 </table>
+<label>Total Price: </label> @ViewBag.order.TotalPrice
+<br />
