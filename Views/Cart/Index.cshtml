@@ -11,32 +11,36 @@
 else
 {
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.ProductName</td>
-                <td>@item.quantity</td>
-                <td>@item.Price</td>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
             </tr>
-        }
-    </tbody>
-</table>
-<div class="checkout">
-<h4>Total: @Session["total"]</h4>
-<a class="btn btn-success" href="/Order/Checkout">Checkout</a>
-</div>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>
+                        <a class="btn btn-info" style="margin-right:10px;padding: 0 5px 0 5px" href="/Cart/AddToCart/@item.ProductID?single=true">+</a>
+                        @item.quantity
+                        <a class="btn btn-danger" style="margin-left:10px;padding: 0 5px 0 5px" href="/Cart/Remove/@item.ProductID">-</a>
+                    </td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="checkout">
+        <h4>Total: @Session["total"]</h4>
+        <a class="btn btn-success" href="/Order/Checkout">Checkout</a>
+    </div>
 }
 <style>
-    .checkout{
+    .checkout {
         display: flex;
         gap: 20px;
     }

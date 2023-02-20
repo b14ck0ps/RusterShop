@@ -20,7 +20,7 @@ namespace RusterShop.Controllers
             return View(cart);
         }
 
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, string single)
         {
             decimal? total = 0;
             List<Product> cart = new List<Product>();
@@ -32,7 +32,7 @@ namespace RusterShop.Controllers
             {
                 total = (decimal)Session["total"];
             }
-            
+
             //check if item already exist in cart session
             if (cart.Any(x => x.ProductID == id))
             {
@@ -48,7 +48,7 @@ namespace RusterShop.Controllers
             }
             else
             {
-               //add a new item to cart session and update total
+                //add a new item to cart session and update total
                 using (RusterEntities db = new RusterEntities())
                 {
                     Product product = db.Products.Find(id);
@@ -56,13 +56,49 @@ namespace RusterShop.Controllers
                     cart.Add(product);
                     total += product.Price * product.quantity;
                 }
-              
+
             }
 
             Session["Cart"] = cart;
             Session["CartCount"] = cart.Count;
             Session["total"] = total;
+            if (single != null) return RedirectToAction("Index");
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Remove(int id)
+        {
+            //remove a item from cart
+            List<Product> cart = new List<Product>();
+            if (Session["cart"] != null)
+            {
+                cart = (List<Product>)Session["cart"];
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            if (cart.Any(x => x.ProductID == id))
+            {
+                foreach (var item in cart)
+                {
+                    if (item.ProductID == id)
+                    {
+                        item.quantity--;
+                        decimal? totalPrice = (decimal)Session["total"];
+                        totalPrice -= item.Price;
+                        Session["total"] = totalPrice;
+                        if (item.quantity == 0)
+                        {
+                            cart.Remove(item);
+                            Session["CartCount"] = cart.Count;
+                            break;
+                        }
+                    }
+                }
+            }
+            Session["cart"] = cart;
+            return RedirectToAction("Index");
         }
     }
 }

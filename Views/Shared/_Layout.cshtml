@@ -24,7 +24,8 @@
                     <li>@Html.ActionLink("Orders", "Index", "Order")</li>
                     <li>
                         <a href="/Cart/Index">
-                            Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">@Session["CartCount"]</p>
+                            Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">
+                           @if ((int)Session["CartCount"] > 0) {@Session["CartCount"]}</p>
                         </a>
                     </li>
                 </ul>
