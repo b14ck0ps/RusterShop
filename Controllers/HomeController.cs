@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RusterShop.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,10 @@ namespace RusterShop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly RusterEntities _db = new RusterEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(_db.Products.ToList());
         }
 
         public ActionResult About()
