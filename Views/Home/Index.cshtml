@@ -6,11 +6,10 @@
 
 <h1>Products</h1>
 
-<div style="display: flex">
+<div style="display: flex; flex-wrap: wrap;">
     @foreach (var item in Model)
     {
-        <div class="card" style="width: 18rem;">
-            @*<img class="card-img-top" src="..." alt="Card image cap">*@
+        <div class="card" style="width: 18rem; padding: 10px">
             <div class="card-body">
                 <h2 class="card-title">@item.ProductName</h2>
                 <p class="card-text"></p>
