@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RusterShop.EF.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateNewProduct")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Product Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+           Quantity
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditProduct", new { id=item.ProductID }) |
+            @Html.ActionLink("Details", "ProductDetails", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "DeleteProduct", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+
+</table>

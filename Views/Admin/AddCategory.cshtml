@@ -1,0 +1,55 @@
+﻿@model List<RusterShop.EF.Category>
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Categories</h2>
+<div class="d-flex justify-content-around">
+    <div>
+        <table class="table" style="width:500px">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.CategoryID
+                    </td>
+                    <td>
+                        @item.CategoryName
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <h5>Add Category</h5>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    Category Name
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" name="CategoryName" value="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 mt-2">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="mt-2">
+    @Html.ActionLink("Back to List", "Index")
+</div>
