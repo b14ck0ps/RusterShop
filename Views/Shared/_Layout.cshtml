@@ -22,23 +22,28 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Order")</li>
-                    <li><a href="/Cart/Index">
-                        Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">@Session["CartCount"]</p>
+                    <li>
+                        <a href="/Cart/Index">
+                            Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">@Session["CartCount"]</p>
                         </a>
                     </li>
                 </ul>
             </div>
             <div>
-                
+
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="main-content">
+            <div style="margin:50px 0 auto 0">
+                @RenderBody()
+            </div>
+            <footer style="margin:0">
+                <hr />
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -46,3 +51,16 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+    body {
+        padding: 0;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+    }
+</style>
