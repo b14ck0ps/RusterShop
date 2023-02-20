@@ -12,6 +12,7 @@ namespace RusterShop.Controllers
         private readonly RusterEntities _db = new RusterEntities();
         public ActionResult Index()
         {
+            ViewBag.Cart = Session["Cart"];
             return View(_db.Products.ToList());
         }
 

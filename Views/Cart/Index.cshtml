@@ -1,0 +1,35 @@
+﻿@model IEnumerable<RusterShop.EF.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="checkout">
+<h4>Total: @Session["total"]</h4>
+<a class="btn btn-success" href="#">Checkout</a>
+</div>
+
+<style>
+    .checkout{
+        display: flex;
+        gap: 20px;
+    }
+</style>
