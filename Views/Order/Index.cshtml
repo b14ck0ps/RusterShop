@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RusterShop.EF.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Orders</h2>
+<table class="table">
+    <tr>
+        <th>Date</th>
+
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
+
+</table>
