@@ -41,6 +41,7 @@ namespace RusterShop.Controllers
             Order order = new Order
             {
                 OrderDate = DateTime.Now,
+                TotalPrice = (decimal)Session["total"],
                 CustomerID = 1
 
             };

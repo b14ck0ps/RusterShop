@@ -23,6 +23,7 @@ namespace RusterShop.EF
         public int OrderID { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> CustomerID { get; set; }
+        public Nullable<decimal> TotalPrice { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

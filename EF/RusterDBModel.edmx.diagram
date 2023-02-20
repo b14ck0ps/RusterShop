@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e242e4989f7d481fb4becada994cd1ff" Name="Diagram1">
-        <EntityTypeShape EntityType="RusterModel.Category" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RusterModel.Customer" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RusterModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RusterModel.Product" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RusterModel.ProductsOrder" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RusterModel.Category" Width="1.5" PointX="3.375" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RusterModel.Customer" Width="1.5" PointX="4.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RusterModel.Order" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RusterModel.Product" Width="1.5" PointX="5.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RusterModel.ProductsOrder" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RusterModel.sysdiagram" Width="1.5" PointX="15.25" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="RusterModel.FK_Products_Category" ManuallyRouted="false" />
         <AssociationConnector Association="RusterModel.FK_Orders_Customers" ManuallyRouted="false" />
