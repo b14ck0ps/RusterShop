@@ -25,7 +25,7 @@
                     <li>
                         <a href="/Cart/Index">
                             Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">
-                           @if ((int)Session["CartCount"] > 0) {@Session["CartCount"]}</p>
+                           @if (Session["CartCount"] !=null && (int)Session["CartCount"] > 0) {@Session["CartCount"]}</p>
                         </a>
                     </li>
                 </ul>
