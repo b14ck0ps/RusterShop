@@ -16,13 +16,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Ruster Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Order")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li><a href="/Cart/Index">
                         Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">@Session["CartCount"]</p>
                         </a>
