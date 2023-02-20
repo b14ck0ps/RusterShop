@@ -8,33 +8,36 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Ruster Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Orders", "Index", "Order")</li>
-                    <li>
-                        <a href="/Cart/Index">
-                            Cart<p class="btn btn-info" style="color:snow; padding:0; margin:0 0 0 5px">
-                           @if (Session["CartCount"] !=null && (int)Session["CartCount"] > 0) {@Session["CartCount"]}</p>
+    <nav class="navbar navbar-expand-lg bg-light ">
+        <div class="container-fluid d-flex justify-content-center w-auto">
+            <a class="navbar-brand" href="/">Ruster Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Home/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Order">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/cart" class="nav-link active position-relative">
+                            Cart
+                            @if (Session["CartCount"] != null && (int)Session["CartCount"] > 0)
+                            {
+                                <span class="position-absolute top-3 start-100 translate-middle badge rounded-pill bg-danger">
+                                    @Session["CartCount"]
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            }
                         </a>
                     </li>
                 </ul>
             </div>
-            <div>
-
-            </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         <div class="main-content">
             <div style="margin:50px 0 auto 0">
@@ -42,7 +45,7 @@
             </div>
             <footer style="margin:0">
                 <hr />
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - Ajran Hossain</p>
             </footer>
         </div>
     </div>
@@ -62,6 +65,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100vh;
+        height: 90vh;
+    }
+
+    .nav-pi {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 </style>
