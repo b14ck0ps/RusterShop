@@ -1,0 +1,25 @@
+﻿@model List<RusterShop.EF.Product>
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<label>Order id : </label> @ViewBag.order.OrderID
+<br />
+<label>Order date : </label> @ViewBag.order.OrderDate
+<br />
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>
