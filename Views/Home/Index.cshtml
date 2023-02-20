@@ -13,9 +13,11 @@
             <div class="card-body">
                 <h2 class="card-title">@item.ProductName</h2>
                 <p class="card-text">@item.Category.CategoryName</p>
-                <a href="#" class="btn btn-primary">Add To Cart</a>
+                <p>Price : @item.Price</p>
+                <a href="/Cart/AddToCart/@item.ProductID" class="btn btn-primary">Add To Cart</a>
             </div> 
         </div>
     }
 </div>
+
 
