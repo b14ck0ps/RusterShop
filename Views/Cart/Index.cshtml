@@ -10,33 +10,35 @@
 }
 else
 {
-
     <table class="table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ProductName</td>
-                    <td>
-                        <a class="btn btn-info" style="margin-right:10px;padding: 0 5px 0 5px" href="/Cart/AddToCart/@item.ProductID?single=true">+</a>
-                        @item.quantity
-                        <a class="btn btn-danger" style="margin-left:10px;padding: 0 5px 0 5px" href="/Cart/Remove/@item.ProductID">-</a>
-                    </td>
-                    <td>@item.Price</td>
-                </tr>
-            }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>
+                    <a class="btn btn-info" style="margin-right:10px;padding: 0 5px 0 5px" href="/Cart/AddToCart/@item.ProductID?single=true">+</a>
+                    @item.quantity
+                    <a class="btn btn-danger" style="margin-left:10px;padding: 0 5px 0 5px" href="/Cart/Remove/@item.ProductID">-</a>
+                </td>
+                <td>@item.Price</td>
+            </tr>
+        }
         </tbody>
     </table>
-    <div class="checkout">
-        <h4>Total: @Session["total"]</h4>
-        <a class="btn btn-success" href="/Order/Checkout">Checkout</a>
+    <div class="d-flex justify-content-between align-items-center ">
+        <div class="checkout">
+            <h4>Total: @Session["total"]</h4>
+            <a class="btn btn-success" href="/Order/Checkout">Checkout</a>
+        </div>
+        <a class="btn btn-outline-danger" href="/Cart/Clear">Clear Cart</a>
     </div>
 }
 <style>

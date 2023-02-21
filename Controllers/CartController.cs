@@ -100,5 +100,10 @@ namespace RusterShop.Controllers
             Session["cart"] = cart;
             return RedirectToAction("Index");
         }
+        public ActionResult Clear()
+        {
+            Session.Clear();
+            return RedirectToAction("Index");
+        }
     }
 }
