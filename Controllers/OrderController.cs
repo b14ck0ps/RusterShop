@@ -59,6 +59,7 @@ namespace RusterShop.Controllers
             }
 
             Session.Clear();
+            TempData["Message"] = "Thank you for your order!";
             return RedirectToAction("Index");
         }
     }

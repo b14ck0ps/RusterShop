@@ -35,13 +35,10 @@ namespace RusterShop.Controllers
             if (cart.Any(x => x.ProductID == id))
             {
                 //if exist then increase quantity and update total
-                foreach (var item in cart)
+                foreach (var item in cart.Where(item => item.ProductID == id))
                 {
-                    if (item.ProductID == id)
-                    {
-                        item.quantity++;
-                        total += item.Price;
-                    }
+                    item.quantity++;
+                    total += item.Price;
                 }
             }
             else
@@ -58,11 +55,13 @@ namespace RusterShop.Controllers
 
             }
 
+            var name = cart.FirstOrDefault(x => x.ProductID == id)?.ProductName;
+            var quantity = cart.FirstOrDefault(x => x.ProductID == id)?.quantity;
             Session["Cart"] = cart;
             Session["CartCount"] = cart.Count;
             Session["total"] = total;
-            if (single != null) return RedirectToAction("Index");
-            return RedirectToAction("Index", "Home");
+            TempData["Success"] = $"{quantity}X ({name}) added to cart";
+            return single != null ? RedirectToAction("Index") : RedirectToAction("Index", "Home");
         }
 
         public ActionResult Remove(int id)
@@ -77,6 +76,7 @@ namespace RusterShop.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             if (cart.Any(x => x.ProductID == id))
             {
                 foreach (var item in cart.Where(item => item.ProductID == id))
@@ -91,6 +91,8 @@ namespace RusterShop.Controllers
                     break;
                 }
             }
+            var name = cart.FirstOrDefault(x => x.ProductID == id)?.ProductName;
+            TempData["removed"] = $"1X {name} removed from cart";
             Session["cart"] = cart;
             return RedirectToAction("Index");
         }
