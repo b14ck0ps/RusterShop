@@ -19,21 +19,16 @@ namespace RusterShop.Controllers
         [HttpPost]
         public ActionResult CreateNewProduct(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Products.Add(product);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(product);
+            if (!ModelState.IsValid) return View(product);
+            _db.Products.Add(product);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
         public ActionResult EditProduct(int id)
         {
             var product = _db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
+            if (product == null) return HttpNotFound();
             ViewBag.Category = _db.Categories.ToList();
             return View(product);
         }
@@ -42,14 +37,11 @@ namespace RusterShop.Controllers
         {
             if (!ModelState.IsValid) return View(product);
             var productInDb = _db.Products.Find(product.ProductID);
-            if (productInDb != null)
-            {
-                productInDb.ProductName = product.ProductName;
-                productInDb.CategoryID = product.CategoryID;
-                productInDb.Price = product.Price;
-                productInDb.quantity = product.quantity;
-            }
-
+            if (productInDb == null) return RedirectToAction("Index");
+            productInDb.ProductName = product.ProductName;
+            productInDb.CategoryID = product.CategoryID;
+            productInDb.Price = product.Price;
+            productInDb.quantity = product.quantity;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -57,20 +49,13 @@ namespace RusterShop.Controllers
         public ActionResult ProductDetails(int id)
         {
             var product = _db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
+            return product == null ? (ActionResult)HttpNotFound() : View(product);
         }
 
         public ActionResult DeleteProduct(int id)
         {
             var product = _db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
+            if (product == null) return HttpNotFound();
             _db.Products.Remove(product);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -83,13 +68,10 @@ namespace RusterShop.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Categories.Add(category);
-                _db.SaveChanges();
-                return RedirectToAction("AddCategory");
-            }
-            return View();
+            if (!ModelState.IsValid) return View();
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("AddCategory");
         }
     }
 }
