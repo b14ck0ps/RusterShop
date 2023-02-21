@@ -1,8 +1,5 @@
 ﻿using RusterShop.EF;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RusterShop.Controllers
@@ -43,17 +40,18 @@ namespace RusterShop.Controllers
         [HttpPost]
         public ActionResult EditProduct(Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(product);
+            var productInDb = _db.Products.Find(product.ProductID);
+            if (productInDb != null)
             {
-                var productInDb = _db.Products.Find(product.ProductID);
                 productInDb.ProductName = product.ProductName;
                 productInDb.CategoryID = product.CategoryID;
                 productInDb.Price = product.Price;
-                productInDb.quantity= product.quantity;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                productInDb.quantity = product.quantity;
             }
-            return View(product);
+
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult ProductDetails(int id)
@@ -91,7 +89,7 @@ namespace RusterShop.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("AddCategory");
             }
-            return View(category);
+            return View();
         }
     }
 }
