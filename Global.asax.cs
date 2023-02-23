@@ -10,8 +10,10 @@ namespace RusterShop
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        [Obsolete("Obsolete")]
         protected void Application_Start()
         {
+            Models.MapperConfig.RegisterMappings();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

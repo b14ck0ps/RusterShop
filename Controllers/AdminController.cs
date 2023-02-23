@@ -1,30 +1,39 @@
 ﻿using RusterShop.EF;
 using System.Linq;
 using System.Web.Mvc;
+using RusterShop.Models;
 
 namespace RusterShop.Controllers
 {
     public class AdminController : Controller
     {
         private readonly RusterEntities _db = new RusterEntities();
+
         public ActionResult Index()
         {
             return View(_db.Products.ToList());
         }
+
         public ActionResult CreateNewProduct()
         {
             ViewBag.Category = _db.Categories.ToList();
             return View();
         }
+
         [HttpPost]
-        public ActionResult CreateNewProduct(Product product)
+        public ActionResult CreateNewProduct(ViewModelProducts product)
         {
-            if (!ModelState.IsValid) return View(product);
-            _db.Products.Add(product);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Category = _db.Categories.ToList();
+                return View(product);
+            }
+
+            _db.Products.Add(AutoMapper.Mapper.Map<ViewModelProducts, Product>(product));
             _db.SaveChanges();
             return RedirectToAction("Index");
-
         }
+
         public ActionResult EditProduct(int id)
         {
             var product = _db.Products.Find(id);
@@ -32,6 +41,7 @@ namespace RusterShop.Controllers
             ViewBag.Category = _db.Categories.ToList();
             return View(product);
         }
+
         [HttpPost]
         public ActionResult EditProduct(Product product)
         {
@@ -65,6 +75,7 @@ namespace RusterShop.Controllers
         {
             return View(_db.Categories.ToList());
         }
+
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
